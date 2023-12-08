@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="modal-header">
+    <h4 class="modal-title" *ngIf="!detalle"> Agregar Detalle <i class="fa-solid fa-plus"></i> </h4>
+    <h4 class="modal-title" *ngIf="detalle"> Edicion Detalle <i class="fa-solid fa-pencil"></i> </h4>
+  </div>
+  <form [formGroup]="form">
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-12 form-check form-switch ">
+
+          <label class="form-label"> Factura </label>
+          <select class="form-select" placeholder="Factura" formControlName="idFactura">
+            <option *ngFor="let item of facturas" [value]="item.id"> {{item.numeroFactura}} </option>
+          </select>
+
+          <label class="form-label"> Producto </label>
+          <select class="form-select" placeholder="Producto" formControlName="idProducto">
+            <option *ngFor="let item of productos" [value]="item.id"> {{item.producto}} </option>
+          </select>
+          
+          <label class="form-label"> Precio Unitario </label>
+          <input type="number" class="form-control" placeholder="Precio Unitario" formControlName="precioUnitario">
+
+          <label class="form-label"> Cantidad </label>
+          <input type="number" class="form-control" placeholder="Cantidad" formControlName="cantidad">
+
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="operate()" [disabled]="form.invalid">
+          Guardar </button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-secondary" (click)="closeModal()"> Cancelar </button>
+    </div>
+  </form>
+</div>

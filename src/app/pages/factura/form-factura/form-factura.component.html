@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="modal-header">
+    <h4 class="modal-title" *ngIf="!factura"> Agregar Factura <i class="fa-solid fa-plus"></i> </h4>
+    <h4 class="modal-title" *ngIf="factura"> Edicion Factura <i class="fa-solid fa-pencil"></i> </h4>
+  </div>
+  <form [formGroup]="form">
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-12 form-check form-switch ">
+
+          <label class="form-label"> Numero Factura </label>
+          <input type="text" class="form-control" placeholder="Numero Factura" formControlName="numeroFactura">
+
+          <label class="form-label"> Fecha </label>
+          <input type="date" class="form-control" placeholder="fecha" formControlName="fecha">
+
+          <label class="form-label"> tipodePago </label>
+          <select class="form-select" placeholder="Tipo de Pago" formControlName="tipodePago">
+            <option *ngFor="let item of tipodePago" [value]="item"> {{item}} </option>
+          </select>
+
+          <label class="form-label"> Documento Cliente </label>
+          <input type="text" class="form-control" placeholder="Documento Cliente" formControlName="documentoCliente">
+
+          <label class="form-label"> Nombre Cliente </label>
+          <input type="text" class="form-control" placeholder="Nombre Cliente" formControlName="nombreCliente">
+
+          <label class="form-label"> Subtotal </label>
+          <input type="number" class="form-control" placeholder="Subtotal" formControlName="subtotal">
+
+          <label class="form-label"> Descuento </label>
+          <input type="number" class="form-control" placeholder="Descuento" formControlName="descuento">
+
+          <label class="form-label"> Iva </label>
+          <input type="number" class="form-control" placeholder="Iva" formControlName="iva">
+
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="operate()" [disabled]="form.invalid">
+          Guardar </button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-secondary" (click)="closeModal()"> Cancelar </button>
+    </div>
+  </form>
+</div>
